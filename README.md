@@ -61,7 +61,7 @@ h5py 2.9.0
     
  The available method list:  protonet/protonet_ptl/relationnet/relationnet_softmax.
 
-The available model list:  ResNet10/ResNet18
+The available model list:  ResNet10/ResNet18.
 
 4. Save features for evaluation (optional, if there is no need to adapt the features during testing) 
 
@@ -128,11 +128,13 @@ The PTLoss and LMM(CosFace) are applied during fine-tuning.
 The available model list:  ResNet10/ResNet18.
 
 No matter which finetune method you chosse, a dataset contains 600 tasks.
+
 After evaluating 600 times, you will see the result like this: 600 Test Acc = 49.91% +- 0.44%.
 
 ### Challenge Website and Repository
 You can visit these website for more information.
 
 website: https://www.learning-with-limited-labels.com/
+
 repository: https://github.com/IBM/cdfsl-benchmark
 

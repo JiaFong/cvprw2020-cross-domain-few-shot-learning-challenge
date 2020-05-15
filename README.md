@@ -23,21 +23,13 @@ Please check the README.md in filelists.
 
 ### Specific Tasks:
 
-**EuroSAT**
+**EuroSAT**   : Shots: n = {5, 20, 50}
 
-  • Shots: n = {5, 20, 50}
+**ISIC2018**  :  Shots: n = {5, 20, 50}
 
-**ISIC2018**
+**Plant Disease** :  Shots: n = {5, 20, 50}
 
-  • Shots: n = {5, 20, 50}
-
-**Plant Disease**
-
-  • Shots: n = {5, 20, 50}
-
-**ChestX-Ray8**
-
-  • Shots: n = {5, 20, 50}
+**ChestX-Ray8**  :  Shots: n = {5, 20, 50}
 
 ### Environment
 Python 3.7
@@ -59,28 +51,17 @@ h5py 2.9.0
         python ./train.py --dataset miniImageNet --model ResNet10  --method protonet --n_shot 5 --train_aug
     ```
     
- The available method list:  protonet/protonet_ptl/relationnet/relationnet_softmax.
+ Available method list:  protonet/protonet_ptl/relationnet/relationnet_softmax.
+ Available model list:  ResNet10/ResNet18.
 
-The available model list:  ResNet10/ResNet18.
+4. You can check the challenge websit if you need save and test your features.
 
-4. Save features for evaluation (optional, if there is no need to adapt the features during testing) 
+5. Test
 
-- **Save features for testing**
-
-    ```bash
-        python save_features.py --model ResNet10 --method baseline --dataset CropDisease --n_shot 5 --train_aug
-    ```
-
-5. Test with saved features (optional, if there is no need to adapt the features during testing) 
-
-    ```bash
-        python test_with_saved_features.py --model ResNet10 --method baseline --dataset CropDisease --n_shot 5 --train_aug
-    ```
-
-6. Test
-There are three fine-tune method you can choose:
+There are three fine-tune method you can choose,  the available model architecture for all method is ResNet10 or ResNet18.
 
 * **finetune_backbone_linear.py**:
+
 The original finetune.py in the challenge code.
 
 - You can choose to fine-tune the backbone or not.
@@ -100,19 +81,18 @@ The original finetune.py in the challenge code.
     ```
 The available method list: protonet/protonet_ptl/baseline.
 
-The available model list:  ResNet10/ResNet18.
 
 * **finetune_few_shot_models_PQS.py**:
 
 This method will apply the pseudo query set to the few-shot model you want to fine-tune with. 
+
 The few-shot models will execute the same as in the meta-training phase, using support set and pseudo query set to fine-tune the backbone.
+
 So, there is no option for --freeze_backbone in this file.
     
         python finetune_few_shot_models_PQS.py --model ResNet10 --method protonet  --train_aug --n_shot 5
     
 The available method list:  protonet/protonet_ptl/relationnet/relationnet_softmax.
-
-The available model list:  ResNet10/ResNet18.
 
 
 * **finetune_backbone_LMM-PQS.py**:
@@ -125,11 +105,10 @@ The PTLoss and LMM(CosFace) are applied during fine-tuning.
  
  The available method list: protonet/protonet_ptl/baseline.
 
-The available model list:  ResNet10/ResNet18.
 
-No matter which finetune method you chosse, a dataset contains 600 tasks.
+* No matter which finetune method you choose, a dataset contains 600 tasks.
 
-After evaluating 600 times, you will see the result like this: 600 Test Acc = 49.91% +- 0.44%.
+* After evaluating 600 times, you will see the result like this: 600 Test Acc = 49.91% +- 0.44%.
 
 ### Challenge Website and Repository
 You can visit these website for more information.

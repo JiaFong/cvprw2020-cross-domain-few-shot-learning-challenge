@@ -9,7 +9,7 @@ Please check the README.md in filelists.
 * ResNet10 Baseline/ProtoNet/RelationNet are provided in logs/checkpoints/miniImageNet.
 
 * ResNet18 Baseline : https://drive.google.com/drive/folders/1qzUxKOGwl5OwAmhOCT149TZFuofnbs2A?usp=sharing
-* ResNet18 Protonet : https://drive.google.com/drive/folders/17JxacjaPDx8o9L0Fy8KGTTMlyoSAMYVS?usp=sharing
+* ResNet18 Protonet : https://drive.google.com/drive/folders/12tV_PZ1yNpOK3lyYiHukeKv3plUX9WqG?usp=sharing
 
 ## General information
 
@@ -54,11 +54,15 @@ h5py 2.9.0
         python ./train.py --dataset miniImageNet --model ResNet10  --method baseline --train_aug
     ```
 - **Train meta-learning method (protonet) on miniImageNet**
-The available method list: [protonet/protonet_ptl/relationnet/relationnet_softmax]
 
     ```bash
         python ./train.py --dataset miniImageNet --model ResNet10  --method protonet --n_shot 5 --train_aug
     ```
+    
+ The available method list:  protonet/protonet_ptl/relationnet/relationnet_softmax.
+
+The available model list:  ResNet10/ResNet18
+
 4. Save features for evaluation (optional, if there is no need to adapt the features during testing) 
 
 - **Save features for testing**
@@ -79,10 +83,8 @@ There are three fine-tune method you can choose:
 * **finetune_backbone_linear.py**:
 The original finetune.py in the challenge code.
 
-The available method list: [protonet/protonet_ptl/baseline]
-The available model list: [ResNet10/ResNet18]
-
 - You can choose to fine-tune the backbone or not.
+
     ```bash
         python finetune_backbone_linear.py --model ResNet10 --method baseline  --train_aug --n_shot 5 --freeze_backbone
     ```
@@ -92,33 +94,38 @@ The available model list: [ResNet10/ResNet18]
     ```
 
 - You can also train a new linear layer with the backbone from few-shot models.
+
     ```bash
         python finetune_backbone_linear.py --model ResNet10 --method protonet  --train_aug --n_shot 5 
     ```
+The available method list: protonet/protonet_ptl/baseline.
+
+The available model list:  ResNet10/ResNet18.
 
 * **finetune_few_shot_models_PQS.py**:
+
 This method will apply the pseudo query set to the few-shot model you want to fine-tune with. 
 The few-shot models will execute the same as in the meta-training phase, using support set and pseudo query set to fine-tune the backbone.
 So, there is no option for --freeze_backbone in this file.
-
-The available method list: [protonet/protonet_ptl/relationnet/relationnet_softmax]
-The available model list: [ResNet10/ResNet18]
-
-    ```bash
+    
         python finetune_few_shot_models_PQS.py --model ResNet10 --method protonet  --train_aug --n_shot 5
-    ```
+    
+The available method list:  protonet/protonet_ptl/relationnet/relationnet_softmax.
+
+The available model list:  ResNet10/ResNet18.
+
 
 * **finetune_backbone_LMM-PQS.py**:
+
 This method fine-tunes the backbone in the few-shot style, using the backbone from Baseline or ProtoNet and applying a cosine mean-centroid classifier.
+
 The PTLoss and LMM(CosFace) are applied during fine-tuning.
-
-The available method list: [protonet/protonet_ptl/baseline]
-The available model list: [ResNet10/ResNet18]
-
-    ```bash
+    
         python finetune_backbone_LMM-PQS.py --model ResNet10 --method baseline  --train_aug --n_shot 5
-    ```
+ 
+ The available method list: protonet/protonet_ptl/baseline.
 
+The available model list:  ResNet10/ResNet18.
 
 No matter which finetune method you chosse, a dataset contains 600 tasks.
 After evaluating 600 times, you will see the result like this: 600 Test Acc = 49.91% +- 0.44%.

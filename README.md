@@ -55,7 +55,7 @@ h5py 2.9.0
  
     Available model list:  ResNet10/ResNet18.
 
-4. You can check the challenge websit if you need save and test your features.
+4. You can check the challenge website if you need to save and test your features.
 
 5. Test
 
